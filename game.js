@@ -4,6 +4,7 @@ var userClickedPattern = [];
 var noc = 1;
 var level = 0;
 var noClick = 0;
+var noClickt = 1;
 var zz = 0;
 
 function nextS(){
@@ -11,7 +12,7 @@ function nextS(){
     var randomChoosenColor = buttonColors[randomNumber];
     //console.log(randomChoosenColor);
     gamePattern.push(randomChoosenColor);
-    //console.log(gamePattern);
+    // console.log(gamePattern);
     $("#" + randomChoosenColor).fadeOut(100).fadeIn(100);
     palySound(randomChoosenColor);
     level++;
@@ -53,10 +54,21 @@ $(document).keydown(function(event){
         nextS();
         $("h1").text("level " + level);
     }
-   noc++
+   noc++;
 });
 
+$(document).click(function(event){
+    if (noc === 1){
+        nextS();
+        $("h1").text("level " + level);
+    }
+   noc++;
+});
+
+
 $(".btn").click(function(event){
+
+
     if (noc > 1){
         var userChosenColor = event.target.id; 
     userClickedPattern.push(userChosenColor);
@@ -65,9 +77,9 @@ $(".btn").click(function(event){
     animatePress(userChosenColor);
     var b = userClickedPattern.length;
     noClick++;
-    console.log(noClick);
-    console.log(gamePattern);
-    console.log(userClickedPattern);
+    // console.log(noClick);
+    // console.log(gamePattern);
+    // console.log(userClickedPattern);
     if ( noClick === gamePattern.length){
         checkAnswer();
     }
@@ -92,12 +104,12 @@ function checkAnswer(currentLevel){
     if(zz === 1){
         noClick = 0;
         userClickedPattern = [];
-        console.log("good");
+        // console.log("good");
         setTimeout(function(){nextS();}, 1000);
         
     }
     else{
-    console.log("bad");
+    // console.log("bad");
     var audio = new Audio('sounds/wrong.mp3');
         audio.play();
         $("h1").text("Game Over");
