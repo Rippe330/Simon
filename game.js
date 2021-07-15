@@ -105,14 +105,22 @@ function checkAnswer(currentLevel){
         noClick = 0;
         userClickedPattern = [];
         // console.log("good");
-        setTimeout(function(){nextS();}, 1000);
+        setTimeout(function(){nextS();}, 700);
         
     }
     else{
     // console.log("bad");
-    var audio = new Audio('sounds/wrong.mp3');
+        var audio = new Audio('sounds/wrong.mp3');
         audio.play();
-        $("h1").text("Game Over");
-
+        $("h1").text("Game Over. Press any key to Restart!");
+        $("body").addClass("game-over");
+        setTimeout(function(){$("body").removeClass("game-over");}, 200);
+        noc = 0;
+        level = 0;
+        gamePattern = [];
+        userClickedPattern = [];
+        noClick = 0;
+        noClickt = 1;
+        zz = 0;
     }
 }
